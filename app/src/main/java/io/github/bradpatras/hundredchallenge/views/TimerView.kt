@@ -1,11 +1,6 @@
 package io.github.bradpatras.hundredchallenge.views
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.drawable.Drawable
-import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,13 +8,9 @@ import io.github.bradpatras.hundredchallenge.R
 import kotlinx.android.synthetic.main.timer_view.view.*
 import java.text.DecimalFormat
 
-private const val TIME_PLACEHOLDER: String = "--"
+private const val TIME_PLACEHOLDER: String = "00"
 
-class PaceView : ConstraintLayout {
-    enum class DistanceUnit(val abbreviation: String) {
-        KM("km"),
-        MI("mi")
-    }
+class TimerView : ConstraintLayout {
 
     private val secondsFormat = DecimalFormat("00")
     private var _labelText: String? = ""
