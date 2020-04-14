@@ -42,14 +42,15 @@ class TimerView : ConstraintLayout {
         labelAttribute.recycle()
     }
 
-    fun setPace(minutes: Int?, seconds: Int?) {
+    fun setTime(minutes: Int?, seconds: Int?) {
         setMinutes(minutes)
         setSeconds(seconds)
     }
 
     private fun setMinutes(minutes: Int?) {
         if (minutes is Int) {
-            minutes_tv.text = "$minutes"
+            val displayMinutes = if (minutes < 10) "0$minutes" else "$minutes"
+            minutes_tv.text = displayMinutes
         } else {
             minutes_tv.text = TIME_PLACEHOLDER
         }
@@ -57,6 +58,7 @@ class TimerView : ConstraintLayout {
 
     private fun setSeconds(seconds: Int?) {
         if (seconds is Int) {
+            val displaySeconds = if (seconds < 10) "0$seconds" else "$seconds"
             seconds_tv.text = secondsFormat.format(seconds)
         } else {
             seconds_tv.text = TIME_PLACEHOLDER
