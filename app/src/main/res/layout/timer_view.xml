@@ -1,9 +1,9 @@
-<merge android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="0dp"
@@ -15,13 +15,11 @@
         android:id="@+id/ms_delimiter_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
         android:text="@string/ms_delimiter"
         android:textAlignment="center"
         android:textSize="@dimen/timer_font_size"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,14 +54,15 @@
 
     <TextView
         android:id="@+id/label_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:paddingBottom="2dp"
+        android:textAlignment="center"
         android:textSize="@dimen/timer_label_font_size"
-        app:layout_constraintBottom_toBottomOf="@+id/ms_delimiter_tv"
-        app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
-        app:layout_constraintStart_toStartOf="@+id/minutes_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ms_delimiter_tv" />
 
 </merge>

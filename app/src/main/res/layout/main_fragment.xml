@@ -8,24 +8,39 @@
     tools:context=".ui.main.MainFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/exerciseRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:paddingTop="4dp"
+        android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerView" />
+        app:layout_constraintTop_toBottomOf="@+id/timerView"
+        android:background="@color/taskListBackground"
+        android:clipChildren="false"
+        android:clipToPadding="false"/>
 
     <io.github.bradpatras.hundredchallenge.views.TimerView
         android:id="@+id/timerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelText="Tap timer to start and pause.  Long press timer to reset."
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/timerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/taskListItemBackgroundLight"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

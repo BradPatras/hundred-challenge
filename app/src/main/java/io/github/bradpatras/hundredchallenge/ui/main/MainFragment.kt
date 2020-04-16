@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.bradpatras.hundredchallenge.R
+import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
+import io.github.bradpatras.hundredchallenge.list.ExerciseListAdapter
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
@@ -27,6 +31,12 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         timerController = TimerController(view.timerView)
+        val adapter = ExerciseListAdapter(view.context)
+        adapter.exerciseList = ExerciseRepository().getAllExercises()
+        adapter.setHasStableIds(true)
+        adapter.notifyDataSetChanged()
+        exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
+        exerciseRecyclerView.adapter = adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
