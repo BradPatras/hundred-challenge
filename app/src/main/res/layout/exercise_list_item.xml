@@ -22,35 +22,33 @@
     <View
         android:id="@+id/progress_bar"
         android:layout_width="1dp"
-        android:layout_height="10dp"
+        android:layout_height="12dp"
         android:background="@drawable/rounded_green"
         android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/progress_tv"
-        app:layout_constraintStart_toStartOf="@+id/exercise_tv"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_tv" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/bg_view"
+        app:layout_constraintStart_toStartOf="@+id/bg_view"
+        android:outlineProvider="none"
+        />
 
     <TextView
         android:id="@+id/exercise_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:elevation="4dp"
-        android:text="Exercise"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/bg_view"
+        app:layout_constraintStart_toStartOf="@+id/bg_view"
+        app:layout_constraintTop_toTopOf="@+id/bg_view" />
 
     <TextView
         android:id="@+id/progress_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
         android:elevation="4dp"
-        android:text="Progress"
-        app:layout_constraintBottom_toBottomOf="@id/bg_view"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/exercise_tv"
         app:layout_constraintTop_toBottomOf="@+id/exercise_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,6 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var timerController: TimerController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -30,11 +29,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        timerController = TimerController(view.timerView)
         val adapter = ExerciseListAdapter(view.context)
-        adapter.exerciseList = ExerciseRepository().getAllExercises()
         adapter.setHasStableIds(true)
-        adapter.notifyDataSetChanged()
         exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
         exerciseRecyclerView.adapter = adapter
     }
@@ -42,6 +38,13 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        view?.let {
+            viewModel.timerController.linkToView(it.timerView)
+        }
+        (exerciseRecyclerView.adapter as? ExerciseListAdapter)?.let {
+            it.exerciseList = viewModel.exercises
+            it.notifyDataSetChanged()
+        }
     }
 }
 

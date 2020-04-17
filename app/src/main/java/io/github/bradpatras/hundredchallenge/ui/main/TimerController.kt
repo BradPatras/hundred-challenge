@@ -5,19 +5,21 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.timer
 
-class TimerController(val timerView: TimerView) {
-
+class TimerController() {
     private val disposables = CompositeDisposable()
     private var timeInSeconds: Long = 0
     private var isStarted = false
+    private var timerView: TimerView? = null
 
-    init {
+    fun linkToView(timerView: TimerView) {
         timerView.setOnClickListener { timerClicked() }
         timerView.setOnLongClickListener { timerLongClicked() }
+        this.timerView = timerView
     }
 
-    fun startTimer() {
+    private fun startTimer() {
         isStarted = true
         val ticker = Observable.interval(0, 1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
@@ -28,12 +30,12 @@ class TimerController(val timerView: TimerView) {
         disposables.add(ticker)
     }
 
-    fun stopTimer() {
+    private fun stopTimer() {
         isStarted = false
         disposables.clear()
     }
 
-    fun resetTimer() {
+    private fun resetTimer() {
         isStarted = false
         disposables.clear()
         timeInSeconds = 0
@@ -48,7 +50,7 @@ class TimerController(val timerView: TimerView) {
     private fun updateTimerView() {
         val minutes = (timeInSeconds / 60).toInt()
         val seconds = (timeInSeconds % 60).toInt()
-        timerView.setTime(minutes, seconds)
+        timerView?.setTime(minutes, seconds)
     }
 
     private fun timerClicked() {

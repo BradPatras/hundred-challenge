@@ -40,37 +40,57 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
             onItemLongClicked(position, view)
             return@setOnLongClickListener true
         }
+
+        val progress = exercise.progress.toDouble()/exercise.total.toDouble()
+        if (progress > 0) {
+            updateProgressBar(holder.itemView, progress)
+        }
     }
 
     private fun onItemLongClicked(position: Int, view: View) {
         val clickedExercise = exerciseList.getOrNull(position) ?: return
+
+        // Do nothing if progress is already 0
+        if (clickedExercise.progress == 0) return
+
         clickedExercise.progress -= 5
+
         val updatedProgress = "${clickedExercise.progress}/${clickedExercise.total}"
         view.progress_tv.text = updatedProgress
-        val doneAnim = ValueAnimator.ofInt(view.progress_bar.measuredWidth, ((clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()) * view.exercise_tv.measuredWidth).toInt())
-        doneAnim.addUpdateListener { valueAnimator ->
-            val value = valueAnimator.animatedValue as Int
-            val layoutParams = view.progress_bar.layoutParams
-            layoutParams.width = value
-            view.progress_bar.layoutParams = layoutParams
-        }
-        doneAnim.duration = 250
-        doneAnim.start()
+        val progress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
+        animateProgressBar(view, progress)
     }
 
     private fun onItemClicked(position: Int, view: View) {
         val clickedExercise = exerciseList.getOrNull(position) ?: return
+
+        // Do nothing if progress is already equal to the total
+        if (clickedExercise.progress >= clickedExercise.total) return
+
         clickedExercise.progress += 5
         val updatedProgress = "${clickedExercise.progress}/${clickedExercise.total}"
         view.progress_tv.text = updatedProgress
-        val doneAnim = ValueAnimator.ofInt(view.progress_bar.measuredWidth, ((clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()) * view.exercise_tv.measuredWidth).toInt())
+        val progress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
+        animateProgressBar(view, progress)
+    }
+
+    private fun animateProgressBar(listItemView: View, progress: Double) {
+        val doneAnim = ValueAnimator.ofInt(listItemView.progress_bar.measuredWidth, (progress * listItemView.bg_view.measuredWidth).toInt())
         doneAnim.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Int
-            val layoutParams = view.progress_bar.layoutParams
+            val layoutParams = listItemView.progress_bar.layoutParams
             layoutParams.width = value
-            view.progress_bar.layoutParams = layoutParams
+            listItemView.progress_bar.layoutParams = layoutParams
+            listItemView.progress_bar.visibility = if (value <= 0) View.INVISIBLE else View.VISIBLE
         }
-        doneAnim.duration = 250
+        doneAnim.duration = 150
         doneAnim.start()
+    }
+
+    private fun updateProgressBar(listItemView: View, progress: Double) {
+        val layoutParams = listItemView.progress_bar.layoutParams
+        layoutParams.width = (progress * listItemView.bg_view.measuredWidth).toInt()
+        listItemView.progress_bar.layoutParams = layoutParams
+        listItemView.progress_bar.visibility = if (progress <= 0) View.INVISIBLE else View.VISIBLE
     }
 }

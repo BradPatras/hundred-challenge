@@ -15,7 +15,7 @@ class TimerView : ConstraintLayout {
     private val secondsFormat = DecimalFormat("00")
     private var _labelText: String? = ""
 
-    // The text above the time labels
+    // The text below the time labels
     var labelText: String?
         get() = _labelText
         set(value) {
