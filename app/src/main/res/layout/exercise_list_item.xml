@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false">
@@ -25,11 +24,12 @@
         android:layout_height="12dp"
         android:background="@drawable/rounded_green"
         android:elevation="4dp"
+        android:outlineProvider="none"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/bg_view"
-        app:layout_constraintStart_toStartOf="@+id/bg_view"
-        android:outlineProvider="none"
-        />
+        app:layout_constraintEnd_toEndOf="@id/bg_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bg_view" />
 
     <TextView
         android:id="@+id/exercise_tv"

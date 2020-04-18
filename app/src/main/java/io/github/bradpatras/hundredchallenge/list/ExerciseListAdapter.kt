@@ -5,10 +5,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.github.bradpatras.hundredchallenge.R
 import io.github.bradpatras.hundredchallenge.data.Exercise
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
@@ -43,7 +47,9 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
 
         val progress = exercise.progress.toDouble()/exercise.total.toDouble()
         if (progress > 0) {
-            updateProgressBar(holder.itemView, progress)
+            CoroutineScope(Dispatchers.Main).launch {
+                updateProgressBar(holder.itemView, progress)
+            }
         }
     }
 
@@ -88,9 +94,13 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
     }
 
     private fun updateProgressBar(listItemView: View, progress: Double) {
-        val layoutParams = listItemView.progress_bar.layoutParams
-        layoutParams.width = (progress * listItemView.bg_view.measuredWidth).toInt()
-        listItemView.progress_bar.layoutParams = layoutParams
-        listItemView.progress_bar.visibility = if (progress <= 0) View.INVISIBLE else View.VISIBLE
+        listItemView.progress_bar.doOnLayout {
+            val layoutParams = listItemView.progress_bar.layoutParams
+            (progress * listItemView.bg_view.measuredWidth).toInt()
+            val progressWidth = (progress * listItemView.bg_view.measuredWidth).toInt()
+            layoutParams.width = progressWidth
+            listItemView.progress_bar.layoutParams = layoutParams
+            listItemView.progress_bar.visibility = if (progress <= 0) View.INVISIBLE else View.VISIBLE
+        }
     }
 }
