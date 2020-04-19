@@ -1,13 +1,15 @@
 package io.github.bradpatras.hundredchallenge.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.bradpatras.hundredchallenge.R
+import io.github.bradpatras.hundredchallenge.data.Exercise
 import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
 import io.github.bradpatras.hundredchallenge.list.ExerciseListAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -33,6 +35,8 @@ class MainFragment : Fragment() {
         adapter.setHasStableIds(true)
         exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
         exerciseRecyclerView.adapter = adapter
+
+        ExerciseRepository.liveDataExercises.observe(viewLifecycleOwner, getExerciseListObserverForAdapter(adapter))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,9 +45,11 @@ class MainFragment : Fragment() {
         view?.let {
             viewModel.timerController.linkToView(it.timerView)
         }
-        (exerciseRecyclerView.adapter as? ExerciseListAdapter)?.let {
-            it.exerciseList = viewModel.exercises
-            it.notifyDataSetChanged()
+    }
+
+    private fun getExerciseListObserverForAdapter(adapter: ExerciseListAdapter): Observer<List<Exercise>> {
+        return Observer { exercises ->
+            adapter.exerciseList = exercises
         }
     }
 }

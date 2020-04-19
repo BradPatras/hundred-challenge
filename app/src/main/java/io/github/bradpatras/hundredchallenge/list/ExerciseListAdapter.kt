@@ -16,6 +16,10 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
     private val uiCoroutineScope = CoroutineScope(Dispatchers.Main)
 
     var exerciseList: List<Exercise> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val view = layoutInflater.inflate(R.layout.exercise_list_item, parent, false)
@@ -44,10 +48,9 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
         }
 
         val progress = exercise.progress.toDouble()/exercise.total.toDouble()
-        if (progress > 0) {
-            uiCoroutineScope.launch {
-                holder.updateProgressBar(progress)
-            }
+        
+        uiCoroutineScope.launch {
+            holder.updateProgressBar(progress)
         }
     }
 
