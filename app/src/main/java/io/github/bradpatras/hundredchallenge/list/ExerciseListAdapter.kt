@@ -35,10 +35,10 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
         val progressText = "${exercise.progress}/${exercise.total}"
         holder.itemView.progress_tv.text = progressText
         holder.itemView.exercise_tv.text = exercise.title
-        holder.itemView.setOnClickListener { view ->
+        holder.itemView.setOnClickListener { _ ->
             onItemClicked(position, holder)
         }
-        holder.itemView.setOnLongClickListener { view ->
+        holder.itemView.setOnLongClickListener { _ ->
             onItemLongClicked(position, holder)
             return@setOnLongClickListener true
         }
