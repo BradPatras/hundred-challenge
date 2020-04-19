@@ -1,11 +1,8 @@
 package io.github.bradpatras.hundredchallenge.list
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import io.github.bradpatras.hundredchallenge.R
 import io.github.bradpatras.hundredchallenge.data.Exercise
@@ -16,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHolder>() {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
+    private val uiCoroutineScope = CoroutineScope(Dispatchers.Main)
 
     var exerciseList: List<Exercise> = emptyList()
 
@@ -38,69 +36,45 @@ class ExerciseListAdapter(context: Context): RecyclerView.Adapter<ExerciseViewHo
         holder.itemView.progress_tv.text = progressText
         holder.itemView.exercise_tv.text = exercise.title
         holder.itemView.setOnClickListener { view ->
-            onItemClicked(position, view)
+            onItemClicked(position, holder)
         }
         holder.itemView.setOnLongClickListener { view ->
-            onItemLongClicked(position, view)
+            onItemLongClicked(position, holder)
             return@setOnLongClickListener true
         }
 
         val progress = exercise.progress.toDouble()/exercise.total.toDouble()
         if (progress > 0) {
-            CoroutineScope(Dispatchers.Main).launch {
-                updateProgressBar(holder.itemView, progress)
+            uiCoroutineScope.launch {
+                holder.updateProgressBar(progress)
             }
         }
     }
 
-    private fun onItemLongClicked(position: Int, view: View) {
+    private fun onItemLongClicked(position: Int, holder: ExerciseViewHolder) {
         val clickedExercise = exerciseList.getOrNull(position) ?: return
 
         // Do nothing if progress is already 0
         if (clickedExercise.progress == 0) return
-
+        val oldProgress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
         clickedExercise.progress -= 5
 
         val updatedProgress = "${clickedExercise.progress}/${clickedExercise.total}"
-        view.progress_tv.text = updatedProgress
+        holder.view.progress_tv.text = updatedProgress
         val progress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
-        animateProgressBar(view, progress)
+        holder.animateProgressBar(oldProgress, progress)
     }
 
-    private fun onItemClicked(position: Int, view: View) {
+    private fun onItemClicked(position: Int, holder: ExerciseViewHolder) {
         val clickedExercise = exerciseList.getOrNull(position) ?: return
 
         // Do nothing if progress is already equal to the total
         if (clickedExercise.progress >= clickedExercise.total) return
-
+        val oldProgress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
         clickedExercise.progress += 5
         val updatedProgress = "${clickedExercise.progress}/${clickedExercise.total}"
-        view.progress_tv.text = updatedProgress
+        holder.view.progress_tv.text = updatedProgress
         val progress = clickedExercise.progress.toDouble()/clickedExercise.total.toDouble()
-        animateProgressBar(view, progress)
-    }
-
-    private fun animateProgressBar(listItemView: View, progress: Double) {
-        val doneAnim = ValueAnimator.ofInt(listItemView.progress_bar.measuredWidth, (progress * listItemView.bg_view.measuredWidth).toInt())
-        doneAnim.addUpdateListener { valueAnimator ->
-            val value = valueAnimator.animatedValue as Int
-            val layoutParams = listItemView.progress_bar.layoutParams
-            layoutParams.width = value
-            listItemView.progress_bar.layoutParams = layoutParams
-            listItemView.progress_bar.visibility = if (value <= 0) View.INVISIBLE else View.VISIBLE
-        }
-        doneAnim.duration = 150
-        doneAnim.start()
-    }
-
-    private fun updateProgressBar(listItemView: View, progress: Double) {
-        listItemView.progress_bar.doOnLayout {
-            val layoutParams = listItemView.progress_bar.layoutParams
-            (progress * listItemView.bg_view.measuredWidth).toInt()
-            val progressWidth = (progress * listItemView.bg_view.measuredWidth).toInt()
-            layoutParams.width = progressWidth
-            listItemView.progress_bar.layoutParams = layoutParams
-            listItemView.progress_bar.visibility = if (progress <= 0) View.INVISIBLE else View.VISIBLE
-        }
+        holder.animateProgressBar(oldProgress, progress)
     }
 }

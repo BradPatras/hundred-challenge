@@ -19,6 +19,17 @@
         />
 
     <View
+        android:id="@+id/progress_bar_bg"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:background="@drawable/rounded_grey"
+        android:elevation="4dp"
+        android:outlineProvider="none"
+        app:layout_constraintBottom_toBottomOf="@id/bg_view"
+        app:layout_constraintEnd_toEndOf="@id/bg_view"
+        app:layout_constraintStart_toStartOf="@+id/bg_view" />
+
+    <View
         android:id="@+id/progress_bar"
         android:layout_width="1dp"
         android:layout_height="12dp"
