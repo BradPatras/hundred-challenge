@@ -4,8 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-
-
+    
     defaultConfig {
         applicationId "io.github.bradpatras.hundredchallenge"
         minSdkVersion 26
