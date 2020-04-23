@@ -30,19 +30,4 @@ class MainActivity : AppCompatActivity() {
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_reset -> {
-                ExerciseRepository.resetExercises()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 }

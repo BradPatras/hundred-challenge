@@ -1,9 +1,7 @@
 package io.github.bradpatras.hundredchallenge.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +23,7 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -50,6 +49,20 @@ class MainFragment : Fragment() {
     private fun getExerciseListObserverForAdapter(adapter: ExerciseListAdapter): Observer<List<Exercise>> {
         return Observer { exercises ->
             adapter.exerciseList = exercises
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_reset -> {
+                ExerciseRepository.resetExercises()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
