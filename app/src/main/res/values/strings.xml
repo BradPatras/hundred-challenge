@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hundred Challenge</string>
+    <string name="app_name">100 Challenge</string>
 
     <string name="ms_delimiter">:</string>
     <string name="action_reset">Reset exercises</string>

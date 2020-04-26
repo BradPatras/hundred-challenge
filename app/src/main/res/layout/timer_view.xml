@@ -5,11 +5,23 @@
     android:layout_height="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <View
+        android:id="@+id/center_guide"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="50" />
+        app:layout_constraintTop_toTopOf="@id/ms_delimiter_tv"
+        app:layout_constraintBottom_toBottomOf="@id/ms_delimiter_tv"
+        />
+
+    <View
+        android:id="@+id/timer_baseline_guide"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/ms_delimiter_tv"
+        app:layout_constraintBottom_toBottomOf="@id/ms_delimiter_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/ms_delimiter_tv"
@@ -19,10 +31,12 @@
         android:includeFontPadding="false"
         android:text="@string/ms_delimiter"
         android:textAlignment="center"
+        android:textColor="#707070"
         android:textSize="@dimen/timer_font_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/minutes_tv"
@@ -30,8 +44,10 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
+        android:paddingTop="8dp"
         android:text="00"
         android:textAlignment="viewEnd"
+        android:textColor="#707070"
         android:textSize="@dimen/timer_font_size"
         app:firstBaselineToTopHeight="0dp"
         app:layout_constraintBottom_toBottomOf="@id/ms_delimiter_tv"
@@ -44,25 +60,42 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
+        android:paddingTop="8dp"
         android:text="00"
         android:textAlignment="viewStart"
+        android:textColor="#707070"
         android:textSize="@dimen/timer_font_size"
         app:firstBaselineToTopHeight="0dp"
         app:layout_constraintBottom_toBottomOf="@id/ms_delimiter_tv"
         app:layout_constraintLeft_toRightOf="@id/ms_delimiter_tv"
         app:layout_constraintTop_toTopOf="@id/ms_delimiter_tv" />
 
+    <ImageButton
+        android:id="@+id/reset_btn"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_reset"
+        android:tint="#FF707070"
+        app:layout_constraintBottom_toBottomOf="@+id/center_guide"
+        app:layout_constraintStart_toEndOf="@+id/seconds_tv"
+        app:layout_constraintTop_toTopOf="@+id/seconds_tv" />
+
     <TextView
         android:id="@+id/label_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
-        android:paddingBottom="2dp"
+        android:lineSpacingExtra="0dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:textSize="@dimen/timer_label_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ms_delimiter_tv" />
+        app:layout_constraintTop_toBottomOf="@id/timer_baseline_guide"/>
 
 </merge>

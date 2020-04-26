@@ -4,8 +4,8 @@ import io.github.bradpatras.hundredchallenge.views.TimerView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.timer_view.view.*
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.timer
 
 class TimerController() {
     private val disposables = CompositeDisposable()
@@ -15,7 +15,7 @@ class TimerController() {
 
     fun linkToView(timerView: TimerView) {
         timerView.setOnClickListener { timerClicked() }
-        timerView.setOnLongClickListener { timerLongClicked() }
+        timerView.reset_btn.setOnClickListener { resetButtonClicked() }
         this.timerView = timerView
     }
 
@@ -61,7 +61,7 @@ class TimerController() {
         }
     }
 
-    private fun timerLongClicked(): Boolean {
+    private fun resetButtonClicked(): Boolean {
         resetTimer()
         return true
     }
