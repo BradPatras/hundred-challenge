@@ -1,10 +1,21 @@
 package io.github.bradpatras.hundredchallenge.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
+@Entity
 data class Exercise(
-    var id: Int,
-    var title: String,
-    var progress: Int = 0,
-    var total: Int = 100
+    @PrimaryKey(autoGenerate = true) var id: Long,
+    @ColumnInfo(name = "exercise_title") var title: String,
+    @ColumnInfo(name = "exercise_progress") var progress: Int,
+    @ColumnInfo(name = "exercise_total") var total: Int
 )
+
+@Dao
+interface ExerciseDao {
+    @Query("SELECT * FROM exercise ORDER by id ASC")
+    fun getAll(): LiveData<List<Exercise>>
+
+    @Update
+    fun updateAll(tasks: List<Exercise>)
+}

@@ -1,18 +1,23 @@
 package io.github.bradpatras.hundredchallenge.data
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
-object ExerciseRepository {
-    private var exercises: List<Exercise> = ExerciseDataSet.fetch()
+class ExerciseRepository(private val exerciseDao: ExerciseDao) {
 
-    val liveDataExercises: MutableLiveData<List<Exercise>> by lazy {
-        val liveData = MutableLiveData<List<Exercise>>()
-        liveData.postValue(exercises)
-        liveData
+    fun getAllExercises(): LiveData<List<Exercise>> {
+        return exerciseDao.getAll()
     }
 
-    fun resetExercises() {
-        exercises = ExerciseDataSet.fetch()
-        liveDataExercises.postValue(exercises)
+    fun updateExercises(exercises: List<Exercise>): Single<Unit> {
+        return Single.just(exercises)
+            .observeOn(Schedulers.io())
+            .map { exerciseDao.updateAll(it) }
     }
+
+//    fun resetExercises() {
+//        exercises = ExerciseDataSet.fetch()
+//        liveDataExercises.postValue(exercises)
+//    }
 }
