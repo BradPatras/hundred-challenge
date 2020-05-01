@@ -20,6 +20,12 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var exerciseRepository: ExerciseRepository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exerciseRepository = ExerciseRepository()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -35,7 +41,7 @@ class MainFragment : Fragment() {
         exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
         exerciseRecyclerView.adapter = adapter
 
-        ExerciseRepository.liveDataExercises.observe(viewLifecycleOwner, getExerciseListObserverForAdapter(adapter))
+        exerciseRepository.getAllExercises().observe(viewLifecycleOwner, getExerciseListObserverForAdapter(adapter))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -59,7 +65,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_reset -> {
-                ExerciseRepository.resetExercises()
+                //ExerciseRepository.resetExercises()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

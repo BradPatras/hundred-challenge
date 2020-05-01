@@ -18,4 +18,7 @@ interface ExerciseDao {
 
     @Update
     fun updateAll(tasks: List<Exercise>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(exercises: List<Exercise>)
 }

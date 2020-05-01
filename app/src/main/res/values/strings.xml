@@ -3,4 +3,5 @@
 
     <string name="ms_delimiter">:</string>
     <string name="action_reset">Reset exercises</string>
+    <string name="preference_file_key">hundredChallengePrefs</string>
 </resources>
