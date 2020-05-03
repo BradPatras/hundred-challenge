@@ -3,7 +3,8 @@
 
 	<solid android:color="#4CE122" />
 	<corners
-		android:bottomLeftRadius="6dp"
-		android:bottomRightRadius="6dp"
+		android:topRightRadius="@dimen/list_item_corner_radius"
+		android:bottomLeftRadius="@dimen/list_item_corner_radius"
+		android:bottomRightRadius="@dimen/list_item_corner_radius"
 		/>
 </shape>

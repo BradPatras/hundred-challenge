@@ -40,6 +40,7 @@ class TimerView : ConstraintLayout {
         val labelAttribute = context.obtainStyledAttributes(attrs, R.styleable.TimerView, defStyle, 0)
         labelText = labelAttribute.getString(R.styleable.TimerView_labelText)
         labelAttribute.recycle()
+
     }
 
     fun setTime(minutes: Int?, seconds: Int?) {

@@ -7,13 +7,23 @@ import androidx.core.view.doOnLayout
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
 
-class ExerciseViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+class ExerciseViewHolder(val view: View,
+                         val clickListener: ((ExerciseViewHolder) -> Unit),
+                         val longClickListener: ((ExerciseViewHolder) -> Unit)
+): RecyclerView.ViewHolder(view) {
+
+    init {
+        view.setOnClickListener { clickListener.invoke(this) }
+        view.setOnLongClickListener { longClickListener.invoke(this); true }
+    }
+
     fun animateProgressBar(oldProgress: Double, newProgress: Double) {
         val doneAnim = ValueAnimator.ofFloat(oldProgress.toFloat(), newProgress.toFloat())
         doneAnim.addUpdateListener { valueAnimator ->
             val value = valueAnimator.animatedValue as Float
             updateProgressBar(value.toDouble())
         }
+
         doneAnim.duration = 150
         doneAnim.start()
     }

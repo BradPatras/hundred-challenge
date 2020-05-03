@@ -1,5 +1,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 	android:shape="rectangle" >
 	<solid android:color="@color/taskListItemBackgroundLight" />
-	<corners android:radius="6dp" />
+	<corners android:radius="@dimen/list_item_corner_radius" />
 </shape>

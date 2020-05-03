@@ -1,8 +1,8 @@
 package io.github.bradpatras.hundredchallenge
 
 import android.app.Application
-import androidx.room.Room
 import io.github.bradpatras.hundredchallenge.data.AppDatabase
+import io.github.bradpatras.hundredchallenge.data.AppDatabaseHelper
 
 class HundredChallengeApplication: Application() {
     lateinit var database: AppDatabase
@@ -14,15 +14,7 @@ class HundredChallengeApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        database = Room.databaseBuilder(this, AppDatabase::class.java, AppDatabase.NAME)
-            .fallbackToDestructiveMigration()
-            .build()
-
-        preloadDatabaseIfNeeded()
-    }
-
-    fun preloadDatabaseIfNeeded() {
-
+        database = AppDatabaseHelper.setupDatabase(this)
     }
 
     companion object {

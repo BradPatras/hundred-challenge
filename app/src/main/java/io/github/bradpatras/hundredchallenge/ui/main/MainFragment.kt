@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ExerciseListAdapter(view.context)
+        val adapter = ExerciseListAdapter(view.context, exerciseRepository)
         adapter.setHasStableIds(true)
         exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
         exerciseRecyclerView.adapter = adapter
@@ -54,7 +54,7 @@ class MainFragment : Fragment() {
 
     private fun getExerciseListObserverForAdapter(adapter: ExerciseListAdapter): Observer<List<Exercise>> {
         return Observer { exercises ->
-            adapter.exerciseList = exercises
+            adapter.submitList(exercises)
         }
     }
 
@@ -65,7 +65,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_reset -> {
-                //ExerciseRepository.resetExercises()
+                exerciseRepository.resetExercises()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

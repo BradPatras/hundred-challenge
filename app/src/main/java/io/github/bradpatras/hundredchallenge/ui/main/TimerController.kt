@@ -1,5 +1,7 @@
 package io.github.bradpatras.hundredchallenge.ui.main
 
+import android.animation.ObjectAnimator
+import androidx.core.animation.doOnEnd
 import io.github.bradpatras.hundredchallenge.views.TimerView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,7 +17,7 @@ class TimerController() {
 
     fun linkToView(timerView: TimerView) {
         timerView.setOnClickListener { timerClicked() }
-        timerView.reset_btn.setOnClickListener { resetButtonClicked() }
+        timerView.button_container.setOnClickListener { resetButtonClicked() }
         this.timerView = timerView
     }
 
@@ -61,8 +63,17 @@ class TimerController() {
         }
     }
 
-    private fun resetButtonClicked(): Boolean {
+    private fun resetButtonClicked() {
         resetTimer()
-        return true
+        ObjectAnimator.ofFloat(timerView!!.reset_btn, "rotation", -65f).apply {
+            duration = 100
+            doOnEnd {
+                ObjectAnimator.ofFloat(timerView!!.reset_btn, "rotation", 0f).apply {
+                    duration = 200
+                    start()
+                }
+            }
+            start()
+        }
     }
 }

@@ -3,7 +3,7 @@
 
 	<solid android:color="#CDCDCD" />
 	<corners
-		android:bottomLeftRadius="6dp"
-		android:bottomRightRadius="6dp"
+		android:bottomLeftRadius="@dimen/list_item_corner_radius"
+		android:bottomRightRadius="@dimen/list_item_corner_radius"
 		/>
 </shape>

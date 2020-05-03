@@ -14,7 +14,10 @@ data class Exercise(
 @Dao
 interface ExerciseDao {
     @Query("SELECT * FROM exercise ORDER by id ASC")
-    fun getAll(): LiveData<List<Exercise>>
+    fun getAllLiveData(): LiveData<List<Exercise>>
+
+    @Query("SELECT * FROM exercise ORDER by id ASC")
+    fun getAll(): List<Exercise>
 
     @Update
     fun updateAll(tasks: List<Exercise>)

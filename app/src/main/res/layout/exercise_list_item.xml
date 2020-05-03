@@ -15,28 +15,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/rounded_list_item_bg"
-        android:elevation="4dp"
+        android:background="@drawable/list_item_rounded_ripple_bg"
+        android:elevation="@dimen/list_item_elevation"
         />
 
-    <View
-        android:id="@+id/ripple_layer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="4dp"
-        app:layout_constraintStart_toStartOf="@id/bg_view"
-        app:layout_constraintEnd_toEndOf="@id/bg_view"
-        app:layout_constraintTop_toTopOf="@id/bg_view"
-        app:layout_constraintBottom_toBottomOf="@id/bg_view"
-        android:background="?android:attr/selectableItemBackground"
-        />
+<!--    <View-->
+<!--        android:id="@+id/ripple_layer"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:elevation="4dp"-->
+<!--        app:layout_constraintStart_toStartOf="@id/bg_view"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/bg_view"-->
+<!--        app:layout_constraintTop_toTopOf="@id/bg_view"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/bg_view"-->
+<!--        android:background="@drawable/list_item_rounded_ripple_bg"-->
+<!--        />-->
 
     <View
         android:id="@+id/progress_bar_bg"
         android:layout_width="0dp"
         android:layout_height="12dp"
         android:background="@drawable/rounded_grey"
-        android:elevation="4dp"
+        android:elevation="@dimen/list_item_elevation"
         android:outlineProvider="none"
         app:layout_constraintBottom_toBottomOf="@id/bg_view"
         app:layout_constraintEnd_toEndOf="@id/bg_view"
@@ -47,7 +47,7 @@
         android:layout_width="1dp"
         android:layout_height="12dp"
         android:background="@drawable/progress_bar_bg_transition"
-        android:elevation="4dp"
+        android:elevation="@dimen/list_item_elevation"
         android:outlineProvider="none"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/bg_view"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:elevation="4dp"
+        android:elevation="@dimen/list_item_elevation"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/bg_view"
         app:layout_constraintStart_toStartOf="@+id/bg_view"
@@ -71,7 +71,7 @@
         android:id="@+id/progress_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
+        android:elevation="@dimen/list_item_elevation"
         app:layout_constraintBottom_toTopOf="@id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/exercise_tv"
         app:layout_constraintTop_toBottomOf="@+id/exercise_tv" />
