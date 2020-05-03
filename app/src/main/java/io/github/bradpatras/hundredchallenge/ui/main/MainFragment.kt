@@ -9,15 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.bradpatras.hundredchallenge.R
 import io.github.bradpatras.hundredchallenge.data.Exercise
 import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
-import io.github.bradpatras.hundredchallenge.list.ExerciseListAdapter
+import io.github.bradpatras.hundredchallenge.mainlist.ExerciseListAdapter
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     private lateinit var viewModel: MainViewModel
     private lateinit var exerciseRepository: ExerciseRepository
@@ -66,6 +62,10 @@ class MainFragment : Fragment() {
         return when (item.itemId) {
             R.id.action_reset -> {
                 exerciseRepository.resetExercises()
+                return true
+            }
+            R.id.action_edit_exercises -> {
+                // todo: launch edit screen
                 return true
             }
             else -> super.onOptionsItemSelected(item)

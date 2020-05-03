@@ -1,4 +1,4 @@
-package io.github.bradpatras.hundredchallenge.list
+package io.github.bradpatras.hundredchallenge.mainlist
 
 import android.animation.ValueAnimator
 import android.graphics.drawable.TransitionDrawable

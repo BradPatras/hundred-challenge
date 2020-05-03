@@ -5,4 +5,7 @@
         android:title="@string/action_reset"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_edit_exercises"
+        android:title="@string/action_edit_exercises"
+        app:showAsAction="never"/>
 </menu>
