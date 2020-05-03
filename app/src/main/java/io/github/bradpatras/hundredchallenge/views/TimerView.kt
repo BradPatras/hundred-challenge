@@ -12,7 +12,7 @@ private const val TIME_PLACEHOLDER: String = "00"
 
 class TimerView : ConstraintLayout {
 
-    private val secondsFormat = DecimalFormat("00")
+    private val timerFormat = DecimalFormat("00")
     private var _labelText: String? = ""
 
     // The text below the time labels
@@ -50,8 +50,7 @@ class TimerView : ConstraintLayout {
 
     private fun setMinutes(minutes: Int?) {
         if (minutes is Int) {
-            val displayMinutes = if (minutes < 10) "0$minutes" else "$minutes"
-            minutes_tv.text = displayMinutes
+            minutes_tv.text = timerFormat.format(minutes)
         } else {
             minutes_tv.text = TIME_PLACEHOLDER
         }
@@ -59,14 +58,13 @@ class TimerView : ConstraintLayout {
 
     private fun setSeconds(seconds: Int?) {
         if (seconds is Int) {
-            val displaySeconds = if (seconds < 10) "0$seconds" else "$seconds"
-            seconds_tv.text = secondsFormat.format(seconds)
+            seconds_tv.text = timerFormat.format(seconds)
         } else {
             seconds_tv.text = TIME_PLACEHOLDER
         }
     }
 
-    fun setLabel(label: String) {
+    private fun setLabel(label: String) {
         label_tv.text = label
     }
 }
