@@ -5,8 +5,6 @@
     <string name="action_reset">Reset progress</string>
     <string name="preference_file_key">hundredChallengePrefs</string>
     <string name="action_edit_exercises">Edit exercises</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_exercises_list_title">Edit Exercises</string>
     <string name="rep_total_label">Rep total:</string>
 </resources>

@@ -2,11 +2,8 @@ package io.github.bradpatras.hundredchallenge
 
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
 import io.github.bradpatras.hundredchallenge.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.container, MainFragment())
                     .commitNow()
         }
 

@@ -6,4 +6,5 @@
     <color name="taskListItemBackgroundLight">#F3F3F3</color>
     <color name="taskListBackground">#cfcfcf</color>
     <color name="tint_btn_icon">#FF707070</color>
+    <color name="edit_list_item_separator">#e3e3e3</color>
 </resources>
