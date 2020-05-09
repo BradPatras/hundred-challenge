@@ -14,11 +14,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:theme="@style/AppTheme.ActionBar"
+        android:theme="@style/ActionToolBarTheme"
+        android:background="@color/colorPrimary"
         app:menu="@menu/main"
         app:title="100 Challenge"
-        app:titleTextColor="@android:color/white"
-        app:popupTheme="@style/AppTheme.ActionBar.Popup"
+        app:popupTheme="@style/OverflowPopupTheme"
         />
 
     <androidx.recyclerview.widget.RecyclerView

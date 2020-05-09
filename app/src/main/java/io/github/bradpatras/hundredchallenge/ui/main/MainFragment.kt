@@ -70,6 +70,7 @@ class MainFragment : Fragment() {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.container, EditExercisesFragment())
                     .addToBackStack(null)
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                     .commit()
                 return true
             }
