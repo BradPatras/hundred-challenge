@@ -16,16 +16,12 @@ class EditExerciseListAdapter(context: Context, exerciseRepository: ExerciseRepo
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditExerciseViewHolder {
         val view = layoutInflater.inflate(R.layout.edit_exercise_list_item, parent, false)
 
-        return EditExerciseViewHolder((view), this::onItemEditClicked)
+        return EditExerciseViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EditExerciseViewHolder, position: Int) {
         val exercise = getItem(position)
-        holder.itemView.exercise_title_tv.text = exercise.title
-        holder.itemView.exercise_rep_value_tv.text = exercise.total.toString()
-    }
-
-    private fun onItemEditClicked(viewHolder: EditExerciseViewHolder) {
-
+        holder.itemView.exercise_title_tv.editText?.setText(exercise.title)
+        holder.itemView.exercise_rep_value_tv.editText?.setText(exercise.total.toString())
     }
 }
