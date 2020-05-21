@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/exercise_title_tv"
+        android:id="@+id/exercise_title_tl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/exercise_title_et"
             android:hint="Title"
             android:textSize="32sp"
             android:paddingTop="0dp"
@@ -24,18 +25,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/exercise_rep_value_tv"
+        android:id="@+id/exercise_rep_value_tl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:layout_marginBottom="6dp"
         android:layout_marginHorizontal="12dp"
-        app:layout_constraintTop_toBottomOf="@id/exercise_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/exercise_title_tl"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_separator_view">
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/exercise_rep_value_et"
         android:hint="Rep Total"
         android:textSize="16sp"
         android:inputType="number"
