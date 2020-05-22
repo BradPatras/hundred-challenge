@@ -7,4 +7,10 @@
     <string name="action_edit_exercises">Edit exercises</string>
     <string name="edit_exercises_list_title">Edit Exercises</string>
     <string name="rep_total_label">Rep total:</string>
+    <string name="delete_exercise_btn_desc">Delete Exercise Button</string>
+    <string name="rep_total_et_hint">Rep Total</string>
+    <string name="title_et_hint">Title</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

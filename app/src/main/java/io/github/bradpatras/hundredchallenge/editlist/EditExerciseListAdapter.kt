@@ -16,7 +16,7 @@ class EditExerciseListAdapter(context: Context, val exerciseRepository: Exercise
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditExerciseViewHolder {
         val view = layoutInflater.inflate(R.layout.edit_exercise_list_item, parent, false)
 
-        return EditExerciseViewHolder(view, this::titleEditTextDidChange, this::repCountEditTextDidChange)
+        return EditExerciseViewHolder(view, this::deleteButtonClicked, this::titleEditTextDidChange, this::repCountEditTextDidChange)
     }
 
     override fun onBindViewHolder(holder: EditExerciseViewHolder, position: Int) {
@@ -35,5 +35,10 @@ class EditExerciseListAdapter(context: Context, val exerciseRepository: Exercise
         val exercise = getItem(viewHolder.adapterPosition)
         exercise.total = newRepCount.toIntOrNull() ?: 0
         exerciseRepository.updateExercises(listOf(exercise)).subscribe()
+    }
+
+    private fun deleteButtonClicked(viewHolder: EditExerciseViewHolder) {
+        val exercise = getItem(viewHolder.adapterPosition)
+        exerciseRepository.deleteExercises(listOf(exercise)).subscribe()
     }
 }

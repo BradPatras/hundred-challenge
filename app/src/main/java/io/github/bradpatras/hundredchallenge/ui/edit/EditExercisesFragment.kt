@@ -1,6 +1,7 @@
 package io.github.bradpatras.hundredchallenge.ui.edit
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,5 +48,15 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
 
     private fun onNavigationItemClicked() {
         activity?.onBackPressed()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_add -> {
+                // todo: show add item dialog
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

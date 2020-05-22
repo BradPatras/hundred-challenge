@@ -19,6 +19,12 @@ class ExerciseRepository(private val exerciseDao: ExerciseDao = HundredChallenge
             .map { exerciseDao.updateAll(it) }
     }
 
+    fun deleteExercises(exercises: List<Exercise>): Single<Unit> {
+        return Single.just(exercises)
+            .observeOn(Schedulers.io())
+            .map { exerciseDao.deleteAll(it) }
+    }
+
     fun insertExercises(exercises: List<Exercise>): Single<Unit> {
         return Single.just(exercises)
             .observeOn(Schedulers.io())

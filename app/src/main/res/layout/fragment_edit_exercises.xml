@@ -19,6 +19,7 @@
         android:background="@color/colorPrimary"
         app:titleTextColor="@android:color/white"
         app:popupTheme="@style/OverflowPopupTheme"
+        app:menu="@menu/edit"
         />
 
     <androidx.recyclerview.widget.RecyclerView
