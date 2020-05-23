@@ -17,7 +17,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/exercise_title_et"
             android:hint="@string/title_et_hint"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:paddingTop="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

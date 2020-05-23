@@ -11,6 +11,7 @@ import io.github.bradpatras.hundredchallenge.R
 import io.github.bradpatras.hundredchallenge.data.Exercise
 import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
 import io.github.bradpatras.hundredchallenge.editlist.EditExerciseListAdapter
+import io.github.bradpatras.hundredchallenge.ui.add.AddExerciseDialogFragment
 import kotlinx.android.synthetic.main.fragment_edit_exercises.*
 
 class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
@@ -19,13 +20,13 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         edit_list_action_bar.setNavigationOnClickListener { onNavigationItemClicked() }
+        edit_list_action_bar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
 
         val adapter = EditExerciseListAdapter(view.context, exerciseRepository)
         adapter.setHasStableIds(true)
@@ -53,7 +54,8 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_add -> {
-                // todo: show add item dialog
+                AddExerciseDialogFragment()
+                    .show(parentFragmentManager, "AddExercise")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
