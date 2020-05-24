@@ -8,17 +8,22 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import io.github.bradpatras.hundredchallenge.R
+import io.github.bradpatras.hundredchallenge.data.Exercise
 import io.github.bradpatras.hundredchallenge.data.ExerciseRepository
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_add_exercise_dialog.view.*
+import java.util.*
 
 class AddExerciseDialogFragment : DialogFragment() {
     lateinit var repository: ExerciseRepository
     lateinit var viewModel: AddExerciseViewModel
 
-    lateinit var titleTextLiveData: MutableLiveData<String>
-    lateinit var repCountLiveData: MutableLiveData<Int>
+    private var titleTextLiveData: MutableLiveData<String> = MutableLiveData()
+    private var repCountLiveData: MutableLiveData<Int> = MutableLiveData()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +52,13 @@ class AddExerciseDialogFragment : DialogFragment() {
     }
 
     private fun createButtonClicked(button: View) {
-
+        val title = viewModel.title ?: "Untitled"
+        val repCount = viewModel.repCount ?: 100
+        val exercise = Exercise(UUID.randomUUID().leastSignificantBits, title, 0, repCount)
+        compositeDisposable.add(
+            repository.insertExercises(listOf(exercise)).subscribe { _ ->
+                this.dismiss()
+        })
     }
 
     private fun titleEditTextDidEdit(text: Editable?) {
@@ -61,6 +72,12 @@ class AddExerciseDialogFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(AddExerciseViewModel::class.java)
-    }
 
+        titleTextLiveData.observe(this.viewLifecycleOwner, Observer { newTitle ->
+            viewModel.title = newTitle
+        })
+        repCountLiveData.observe(this.viewLifecycleOwner, Observer { newRepCount ->
+            viewModel.repCount = newRepCount
+        })
+    }
 }
