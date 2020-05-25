@@ -66,7 +66,7 @@ class AddExerciseDialogFragment : DialogFragment() {
     }
 
     private fun repCountEditTextDidEdit(text: Editable?) {
-        repCountLiveData.postValue(text.toString().toInt())
+        repCountLiveData.postValue(text.toString().toIntOrNull())
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

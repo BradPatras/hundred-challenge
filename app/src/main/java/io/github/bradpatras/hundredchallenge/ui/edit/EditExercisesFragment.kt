@@ -18,10 +18,6 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
     private lateinit var viewModel: EditExercisesViewModel
     private val exerciseRepository: ExerciseRepository = ExerciseRepository()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

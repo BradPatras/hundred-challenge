@@ -30,7 +30,6 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         main_action_bar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
         val adapter = ExerciseListAdapter(view.context, exerciseRepository)
-        adapter.setHasStableIds(true)
         exerciseRecyclerView.layoutManager = LinearLayoutManager(view.context)
         exerciseRecyclerView.adapter = adapter
 

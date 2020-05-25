@@ -30,6 +30,10 @@ class ExerciseListAdapter(context: Context, val repository: ExerciseRepository):
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private val uiCoroutineScope = CoroutineScope(Dispatchers.Main)
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val view = layoutInflater.inflate(R.layout.exercise_list_item, parent, false)
 
