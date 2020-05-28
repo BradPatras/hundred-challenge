@@ -18,8 +18,8 @@ import kotlinx.android.synthetic.main.fragment_add_exercise_dialog.view.*
 import java.util.*
 
 class AddExerciseDialogFragment : DialogFragment() {
-    lateinit var repository: ExerciseRepository
-    lateinit var viewModel: AddExerciseViewModel
+    private lateinit var repository: ExerciseRepository
+    private lateinit var viewModel: AddExerciseViewModel
 
     private var titleTextLiveData: MutableLiveData<String> = MutableLiveData()
     private var repCountLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -35,6 +35,7 @@ class AddExerciseDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        isCancelable = false
         return inflater.inflate(R.layout.fragment_add_exercise_dialog, container)
     }
 

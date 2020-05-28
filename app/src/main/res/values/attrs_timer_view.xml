@@ -1,5 +1,0 @@
-<resources>
-    <declare-styleable name="TimerView">
-        <attr name="labelText" format="string" />
-    </declare-styleable>
-</resources>

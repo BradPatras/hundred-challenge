@@ -13,34 +13,21 @@ private const val TIME_PLACEHOLDER: String = "00"
 class TimerView : ConstraintLayout {
 
     private val timerFormat = DecimalFormat("00")
-    private var _labelText: String? = ""
-
-    // The text below the time labels
-    var labelText: String?
-        get() = _labelText
-        set(value) {
-            _labelText = value
-            setLabel(value ?: "")
-        }
 
     constructor(context: Context) : super(context) {
-        init(null, 0)
+        init()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
+        init()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
+        init()
     }
 
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
+    private fun init() {
         View.inflate(context, R.layout.timer_view, this)
-        val labelAttribute = context.obtainStyledAttributes(attrs, R.styleable.TimerView, defStyle, 0)
-        labelText = labelAttribute.getString(R.styleable.TimerView_labelText)
-        labelAttribute.recycle()
-
     }
 
     fun setTime(minutes: Int?, seconds: Int?) {
@@ -62,9 +49,5 @@ class TimerView : ConstraintLayout {
         } else {
             seconds_tv.text = TIME_PLACEHOLDER
         }
-    }
-
-    private fun setLabel(label: String) {
-        label_tv.text = label
     }
 }

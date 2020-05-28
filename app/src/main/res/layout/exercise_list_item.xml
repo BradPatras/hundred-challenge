@@ -19,18 +19,6 @@
         android:elevation="@dimen/list_item_elevation"
         />
 
-<!--    <View-->
-<!--        android:id="@+id/ripple_layer"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:elevation="4dp"-->
-<!--        app:layout_constraintStart_toStartOf="@id/bg_view"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/bg_view"-->
-<!--        app:layout_constraintTop_toTopOf="@id/bg_view"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/bg_view"-->
-<!--        android:background="@drawable/list_item_rounded_ripple_bg"-->
-<!--        />-->
-
     <View
         android:id="@+id/progress_bar_bg"
         android:layout_width="0dp"

@@ -3,5 +3,5 @@
     <dimen name="timer_font_size">64sp</dimen>
     <dimen name="timer_label_font_size">12sp</dimen>
     <dimen name="list_item_corner_radius">6dp</dimen>
-    <dimen name="list_item_elevation">8dp</dimen>
+    <dimen name="list_item_elevation">2dp</dimen>
 </resources>
