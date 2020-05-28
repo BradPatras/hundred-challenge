@@ -11,8 +11,6 @@
     <string name="rep_total_et_hint">Rep Total</string>
     <string name="title_et_hint">Title</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="timer_tooltip">Tap here to start or stop the clock</string>
     <string name="exercise_tooltip">Tap an exercise to add 5, long press to remove 5</string>
 </resources>
