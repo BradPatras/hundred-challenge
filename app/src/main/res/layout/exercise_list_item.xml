@@ -20,7 +20,6 @@
         />
 
     <View
-        android:id="@+id/progress_bar_bg"
         android:layout_width="0dp"
         android:layout_height="12dp"
         android:background="@drawable/rounded_grey"

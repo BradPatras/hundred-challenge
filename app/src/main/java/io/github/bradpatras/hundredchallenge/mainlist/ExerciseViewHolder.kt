@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
 
 class ExerciseViewHolder(val view: View,
-                         val clickListener: ((ExerciseViewHolder) -> Unit),
-                         val longClickListener: ((ExerciseViewHolder) -> Unit)
+                         private val clickListener: ((ExerciseViewHolder) -> Unit),
+                         private val longClickListener: ((ExerciseViewHolder) -> Unit)
 ): RecyclerView.ViewHolder(view) {
 
     init {

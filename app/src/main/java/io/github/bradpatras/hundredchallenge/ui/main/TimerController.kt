@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.timer_view.view.*
 import java.util.concurrent.TimeUnit
 
-class TimerController() {
+class TimerController {
     private val disposables = CompositeDisposable()
     private var timeInSeconds: Long = 0
     private var isStarted = false

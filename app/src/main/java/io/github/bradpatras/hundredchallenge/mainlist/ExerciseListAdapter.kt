@@ -26,7 +26,7 @@ class ExerciseDiffCallback : DiffUtil.ItemCallback<Exercise>() {
     }
 }
 
-class ExerciseListAdapter(context: Context, val repository: ExerciseRepository): ListAdapter<Exercise, ExerciseViewHolder>(ExerciseDiffCallback()) {
+class ExerciseListAdapter(context: Context, private val repository: ExerciseRepository): ListAdapter<Exercise, ExerciseViewHolder>(ExerciseDiffCallback()) {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private val uiCoroutineScope = CoroutineScope(Dispatchers.Main)
 

@@ -82,7 +82,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val prefs = requireContext().getSharedPreferences(requireContext().getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
         if (!prefs.contains(TOOLTIP_SHOWN_KEY)) {
-            timerView.post() { showTimerViewTooltip() }
+            timerView.post { showTimerViewTooltip() }
             prefs.edit()
                 .putBoolean(TOOLTIP_SHOWN_KEY, true)
                 .apply()

@@ -15,7 +15,6 @@
         />
 
     <View
-        android:id="@+id/timer_baseline_guide"
         android:layout_height="1dp"
         android:layout_width="match_parent"
         app:layout_constraintBaseline_toBaselineOf="@id/ms_delimiter_tv"
@@ -45,7 +44,7 @@
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
         android:paddingTop="8dp"
-        android:text="00"
+        android:text="@string/stopwatch_placeholder_zero"
         android:textAlignment="viewEnd"
         android:textColor="#707070"
         android:textSize="@dimen/timer_font_size"
@@ -61,7 +60,7 @@
         android:fontFamily="@font/roboto_medium"
         android:includeFontPadding="false"
         android:paddingTop="8dp"
-        android:text="00"
+        android:text="@string/stopwatch_placeholder_zero"
         android:textAlignment="viewStart"
         android:textColor="#707070"
         android:textSize="@dimen/timer_font_size"
@@ -80,6 +79,7 @@
         android:src="@drawable/ic_reset"
         android:tint="@color/tint_btn_icon"
         android:clickable="false"
+        android:contentDescription="@string/reset_stopwatch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/center_guide"
         app:layout_constraintStart_toEndOf="@+id/seconds_tv"
@@ -97,7 +97,6 @@
         />
 
     <View
-        android:id="@+id/ripple_layer"
         android:layout_height="0dp"
         android:layout_width="0dp"
         android:background="?android:attr/selectableItemBackground"

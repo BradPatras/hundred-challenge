@@ -59,7 +59,7 @@ class AddExerciseDialogFragment : DialogFragment() {
         compositeDisposable.add(
             repository.insertExercises(listOf(exercise)).subscribe { _ ->
                 this.dismiss()
-        })
+            })
     }
 
     private fun titleEditTextDidEdit(text: Editable?) {

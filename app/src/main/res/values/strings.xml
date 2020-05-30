@@ -5,12 +5,15 @@
     <string name="action_reset">Reset progress</string>
     <string name="preference_file_key">hundredChallengePrefs</string>
     <string name="action_edit_exercises">Edit exercises</string>
-    <string name="edit_exercises_list_title">Edit Exercises</string>
-    <string name="rep_total_label">Rep total:</string>
     <string name="delete_exercise_btn_desc">Delete Exercise Button</string>
     <string name="rep_total_et_hint">Rep Total</string>
     <string name="title_et_hint">Title</string>
 
     <string name="timer_tooltip">Tap here to start or stop the clock</string>
     <string name="exercise_tooltip">Tap an exercise to add 5, long press to remove 5</string>
+    <string name="stopwatch_placeholder_zero">00</string>
+    <string name="reset_stopwatch">Reset stopwatch</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
 </resources>
