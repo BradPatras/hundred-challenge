@@ -108,6 +108,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         return when (item.itemId) {
             R.id.action_reset -> {
                 exerciseRepository.resetExercises()
+                viewModel.timerController.resetTimer()
                 return true
             }
             R.id.action_edit_exercises -> {

@@ -2,7 +2,7 @@
     <string name="app_name">100 Challenge</string>
 
     <string name="ms_delimiter">:</string>
-    <string name="action_reset">Reset progress</string>
+    <string name="action_reset">Reset</string>
     <string name="preference_file_key">hundredChallengePrefs</string>
     <string name="action_edit_exercises">Edit exercises</string>
     <string name="delete_exercise_btn_desc">Delete Exercise Button</string>

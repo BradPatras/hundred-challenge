@@ -1,11 +1,9 @@
 package io.github.bradpatras.hundredchallenge.ui.main
 
-import android.animation.ObjectAnimator
 import io.github.bradpatras.hundredchallenge.views.TimerView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.timer_view.view.*
 import java.util.concurrent.TimeUnit
 
 class TimerController {
@@ -16,8 +14,14 @@ class TimerController {
 
     fun linkToView(timerView: TimerView) {
         timerView.setOnClickListener { timerClicked() }
-        timerView.button_container.setOnClickListener { resetButtonClicked() }
         this.timerView = timerView
+    }
+
+    fun resetTimer() {
+        isStarted = false
+        disposables.clear()
+        timeInSeconds = 0
+        updateTimerView()
     }
 
     private fun startTimer() {
@@ -36,13 +40,6 @@ class TimerController {
         disposables.clear()
     }
 
-    private fun resetTimer() {
-        isStarted = false
-        disposables.clear()
-        timeInSeconds = 0
-        updateTimerView()
-    }
-
     private fun tick() {
         timeInSeconds += 1
         updateTimerView()
@@ -59,17 +56,6 @@ class TimerController {
             stopTimer()
         } else {
             startTimer()
-        }
-    }
-
-    private fun resetButtonClicked() {
-        resetTimer()
-
-        ObjectAnimator.ofFloat(timerView!!.reset_btn, "rotation", -65f).apply {
-            duration = 150
-            repeatMode = ObjectAnimator.REVERSE
-            repeatCount = 1
-            start()
         }
     }
 }

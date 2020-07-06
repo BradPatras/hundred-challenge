@@ -50,4 +50,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/taskListItemBackgroundLight"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/confettiAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/confetti"
+        app:lottie_autoPlay="true"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
