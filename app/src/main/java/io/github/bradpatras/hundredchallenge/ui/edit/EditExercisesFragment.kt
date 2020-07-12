@@ -15,7 +15,6 @@ import io.github.bradpatras.hundredchallenge.ui.add.AddExerciseDialogFragment
 import kotlinx.android.synthetic.main.fragment_edit_exercises.*
 
 class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
-    private lateinit var viewModel: EditExercisesViewModel
     private val exerciseRepository: ExerciseRepository = ExerciseRepository()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,11 +29,6 @@ class EditExercisesFragment : Fragment(R.layout.fragment_edit_exercises) {
         editRecyclerView.adapter = adapter
 
         exerciseRepository.getAllExercises().observe(viewLifecycleOwner, getExerciseListObserverForAdapter(adapter))
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EditExercisesViewModel::class.java)
     }
 
     private fun getExerciseListObserverForAdapter(adapter: EditExerciseListAdapter): Observer<List<Exercise>> {

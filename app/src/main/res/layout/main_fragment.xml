@@ -17,8 +17,7 @@
         android:background="@color/colorPrimary"
         app:menu="@menu/main"
         app:title="100 Challenge"
-        app:popupTheme="@style/OverflowPopupTheme"
-        />
+        app:popupTheme="@style/OverflowPopupTheme" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exerciseRecyclerView"
@@ -33,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timerView"
         android:background="@color/taskListBackground"
         android:clipChildren="false"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false" />
 
     <io.github.bradpatras.hundredchallenge.views.TimerView
         android:id="@+id/timerView"
@@ -41,7 +40,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_action_bar"/>
+        app:layout_constraintTop_toBottomOf="@id/main_action_bar" />
 
     <View
         android:layout_width="match_parent"
@@ -49,13 +48,12 @@
         app:layout_constraintTop_toBottomOf="@id/timerView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/taskListItemBackgroundLight"/>
+        android:background="@color/taskListItemBackgroundLight" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/confettiAnimation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_rawRes="@raw/confetti"
-        app:lottie_autoPlay="true"
-        />
+        app:lottie_rawRes="@raw/confetti" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

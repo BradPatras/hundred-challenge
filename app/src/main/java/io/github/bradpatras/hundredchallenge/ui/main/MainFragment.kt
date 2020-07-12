@@ -101,7 +101,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private fun getExerciseListObserverForAdapter(adapter: ExerciseListAdapter): Observer<List<Exercise>> {
         return Observer { exercises ->
             adapter.submitList(exercises)
+            if (exercises.filter { (it.progress / it.total) != 1 }.isEmpty()) {
+                showCompleteAnimation()
+            }
         }
+    }
+
+    private fun showCompleteAnimation() {
+        confettiAnimation.playAnimation()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
